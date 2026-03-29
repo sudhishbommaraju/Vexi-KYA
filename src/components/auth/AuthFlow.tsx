@@ -30,6 +30,16 @@ export function AuthFlow() {
   const [direction, setDirection] = useState(1);
   const currentStep = STEPS[stepIndex];
 
+  if (!supabase) {
+    return (
+      <div className="flex flex-col items-center justify-center p-10 text-center bg-[#020409]/60 backdrop-blur-2xl border border-white/10 rounded-[24px]">
+        <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+        <h2 className="text-xl font-bold text-white mb-2">Authentication unavailable</h2>
+        <p className="text-textSecondary">Supabase configuration is missing or invalid.</p>
+      </div>
+    );
+  }
+
   const [contact, setContact] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -99,8 +109,8 @@ export function AuthFlow() {
     // If we have an @ it's an email, else assume phone
     
     const { error } = isEmail 
-      ? await supabase.auth.signInWithOtp({ email: contact })
-      : await supabase.auth.signInWithOtp({ phone: contact });
+      ? await supabase!.auth.signInWithOtp({ email: contact })
+      : await supabase!.auth.signInWithOtp({ phone: contact });
 
     setLoading(false);
 
@@ -158,8 +168,8 @@ export function AuthFlow() {
       setErrorMsg(null);
       
       const { data, error } = isEmail
-        ? await supabase.auth.verifyOtp({ email: contact, token: fullOtp, type: 'email' })
-        : await supabase.auth.verifyOtp({ phone: contact, token: fullOtp, type: 'sms' });
+        ? await supabase!.auth.verifyOtp({ email: contact, token: fullOtp, type: 'email' })
+        : await supabase!.auth.verifyOtp({ phone: contact, token: fullOtp, type: 'sms' });
 
       setLoading(false);
 
@@ -213,8 +223,8 @@ export function AuthFlow() {
       if (countdown > 0) return;
       setLoading(true);
       const { error } = isEmail 
-        ? await supabase.auth.signInWithOtp({ email: contact })
-        : await supabase.auth.signInWithOtp({ phone: contact });
+        ? await supabase!.auth.signInWithOtp({ email: contact })
+        : await supabase!.auth.signInWithOtp({ phone: contact });
       setLoading(false);
       
       if (error) {
@@ -306,7 +316,7 @@ export function AuthFlow() {
     const handleAcceptTerms = async () => {
       setLoading(true);
       
-      const { error } = await supabase.auth.updateUser({
+      const { error } = await supabase!.auth.updateUser({
         data: { accepted_terms_at: new Date().toISOString() }
       });
 
