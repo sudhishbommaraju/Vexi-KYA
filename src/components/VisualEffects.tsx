@@ -60,13 +60,15 @@ export function MouseSpotlight() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY + window.scrollY);
-      setVisible(true);
-    };
-    window.addEventListener('mousemove', handler);
-    return () => window.removeEventListener('mousemove', handler);
+    if (typeof window !== 'undefined') {
+      const handler = (e: MouseEvent) => {
+        x.set(e.clientX);
+        y.set(e.clientY + window.scrollY);
+        setVisible(true);
+      };
+      window.addEventListener('mousemove', handler);
+      return () => window.removeEventListener('mousemove', handler);
+    }
   }, [x, y]);
 
   return (

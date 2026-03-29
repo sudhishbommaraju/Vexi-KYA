@@ -25,20 +25,21 @@ export default function DownloadPage() {
   const [activeTab, setActiveTab] = useState<OS>('mac');
 
   useEffect(() => {
-    // Basic OS detection using navigator.userAgent
-    const ua = window.navigator.userAgent.toLowerCase();
-    if (ua.includes('mac')) {
-      setDetectedOs('mac');
-      setActiveTab('mac');
-    } else if (ua.includes('win')) {
-      setDetectedOs('win');
-      setActiveTab('win');
-    } else if (ua.includes('linux')) {
-      setDetectedOs('linux');
-      setActiveTab('linux');
-    } else {
-      setDetectedOs('mac'); // fallback
-      setActiveTab('mac');
+    if (typeof window !== 'undefined' && window.navigator) {
+      const ua = window.navigator.userAgent.toLowerCase();
+      if (ua.includes('mac')) {
+        setDetectedOs('mac');
+        setActiveTab('mac');
+      } else if (ua.includes('win')) {
+        setDetectedOs('win');
+        setActiveTab('win');
+      } else if (ua.includes('linux')) {
+        setDetectedOs('linux');
+        setActiveTab('linux');
+      } else {
+        setDetectedOs('mac'); // fallback
+        setActiveTab('mac');
+      }
     }
   }, []);
 
