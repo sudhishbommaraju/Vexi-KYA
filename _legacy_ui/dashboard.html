@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Vexi</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo text-lg">
+          <span class="logo-icon w-4 h-4"></span>
+          Vexi
+        </a>
+      </div>
+      <div class="sidebar-nav">
+        <a href="#" class="nav-item active" data-target="page-overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Overview
+        </a>
+        <a href="#" class="nav-item" data-target="page-agents">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Agents
+        </a>
+        <a href="#" class="nav-item" data-target="page-policies">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Policies
+        </a>
+        <a href="#" class="nav-item" data-target="page-tokens">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          Spend Tokens
+        </a>
+        <a href="#" class="nav-item" data-target="page-transactions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Transactions
+        </a>
+        <a href="#" class="nav-item" data-target="page-apikeys">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+          API Keys
+        </a>
+      </div>
+      <div class="sidebar-nav" style="flex-grow: 0; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+        <a href="#" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Settings
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="flex items-center gap-4">
+          <div class="text-sm text-secondary font-mono flex items-center gap-2">
+            Acme Corp <span class="text-muted">/</span> <span class="text-primary font-medium" id="breadcrumb-current">Overview</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Search transactions, agents...">
+            <span class="shortcut">⌘K</span>
+          </div>
+          <button class="btn btn-primary" id="createBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Create
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area" id="pageContainer">
+
+        <!-- Overview Page -->
+        <div class="page-content block" id="page-overview">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">Overview</h1>
+              <p class="text-secondary text-sm">Monitor your agent fleet's spending activity in real-time.</p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-4 reveal stagger-1 mb-8">
+            <div class="card p-4">
+              <div class="text-xs text-muted font-mono mb-2 uppercase">Total Spend (30d)</div>
+              <div class="text-3xl font-bold">$14,230.50</div>
+              <div class="text-xs text-success mt-2 flex items-center gap-1">
+                <span style="color:#3fb950">↗ 12%</span> vs last month
+              </div>
+            </div>
+            <div class="card p-4">
+              <div class="text-xs text-muted font-mono mb-2 uppercase">Active Agents</div>
+              <div class="text-3xl font-bold">24</div>
+              <div class="text-xs text-muted mt-2 text-secondary">Across 3 environments</div>
+            </div>
+            <div class="card p-4">
+              <div class="text-xs text-muted font-mono mb-2 uppercase">Tokens Minted (24h)</div>
+              <div class="text-3xl font-bold">1,842</div>
+              <div class="text-xs text-muted mt-2 text-secondary">98.2% utilization</div>
+            </div>
+            <div class="card p-4">
+              <div class="text-xs text-muted font-mono mb-2 uppercase">Auth Success Rate</div>
+              <div class="text-3xl font-bold">99.8%</div>
+              <div class="text-xs text-success mt-2 flex items-center gap-1">
+                <span style="color:#d29922">! 3 declines</span> today
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 reveal stagger-2">
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="text-sm font-medium">Recent Transactions</h3>
+                <button class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+              </div>
+              <div class="table-container">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="w-8 py-3"><div class="w-8 h-8 rounded bg-bg flex items-center justify-center font-mono text-xs">AWS</div></td>
+                      <td class="py-3">
+                        <div class="text-sm font-medium">AWS US-East-1</div>
+                        <div class="text-xs text-secondary font-mono">tok_8f92j1k...</div>
+                      </td>
+                      <td class="text-right py-3">
+                        <div class="text-sm font-medium">$450.00</div>
+                        <div class="badge badge-success text-[10px]">Settled</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="w-8 py-3"><div class="w-8 h-8 rounded bg-bg flex items-center justify-center font-mono text-xs">GH</div></td>
+                      <td class="py-3">
+                        <div class="text-sm font-medium">GitHub Actions</div>
+                        <div class="text-xs text-secondary font-mono">tok_3m1p9q...</div>
+                      </td>
+                      <td class="text-right py-3">
+                        <div class="text-sm font-medium">$12.50</div>
+                        <div class="badge badge-success text-[10px]">Settled</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="w-8 py-3"><div class="w-8 h-8 rounded bg-bg flex items-center justify-center font-mono text-xs">OAI</div></td>
+                      <td class="py-3">
+                        <div class="text-sm font-medium">OpenAI API</div>
+                        <div class="text-xs text-secondary font-mono">tok_4z8x2w...</div>
+                      </td>
+                      <td class="text-right py-3">
+                        <div class="text-sm font-medium">$0.00</div>
+                        <div class="badge text-[10px]">Auth</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="text-sm font-medium">Top Spending Agents</h3>
+                <button class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+              </div>
+              <div class="table-container">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="py-3">
+                        <div class="text-sm font-medium flex items-center gap-2">
+                          <span class="w-2 h-2 rounded-full bg-success" style="background-color:#3fb950"></span>
+                          ag_deployer_prod
+                        </div>
+                        <div class="text-xs text-secondary">Policy: pol_aws_restricted</div>
+                      </td>
+                      <td class="text-right py-3">
+                        <div class="text-sm font-medium">$8,402.10</div>
+                        <div class="text-xs text-secondary">521 txns</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="py-3">
+                        <div class="text-sm font-medium flex items-center gap-2">
+                          <span class="w-2 h-2 rounded-full bg-success" style="background-color:#3fb950"></span>
+                          ag_research_bot
+                        </div>
+                        <div class="text-xs text-secondary">Policy: pol_apis_unlimited</div>
+                      </td>
+                      <td class="text-right py-3">
+                        <div class="text-sm font-medium">$4,120.00</div>
+                        <div class="text-xs text-secondary">18,302 txns</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agents Page -->
+        <div class="page-content hidden" id="page-agents">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">Agents</h1>
+              <p class="text-secondary text-sm">Manage autonomous actors and their allowed policy contexts.</p>
+            </div>
+            <button class="btn btn-secondary text-xs">Export CSV</button>
+          </div>
+          
+          <div class="panel reveal stagger-1">
+            <div class="table-container border-b border-border">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Agent ID</th>
+                    <th>Status</th>
+                    <th>Linked Policy</th>
+                    <th>Current Spend (Month)</th>
+                    <th>Created</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="font-mono text-sm">ag_deployer_prod</div>
+                      <div class="text-xs text-secondary">Production infra orchestration</div>
+                    </td>
+                    <td><div class="badge badge-success">Active</div></td>
+                    <td><a href="#" class="text-accent text-sm hover:underline">pol_aws_restricted</a></td>
+                    <td><div class="text-sm font-medium">$8,402.10</div></td>
+                    <td class="text-xs text-secondary">2026-01-15</td>
+                    <td class="text-right"><button class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="font-mono text-sm">ag_research_bot</div>
+                      <div class="text-xs text-secondary">Market analysis scraping</div>
+                    </td>
+                    <td><div class="badge badge-success">Active</div></td>
+                    <td><a href="#" class="text-accent text-sm hover:underline">pol_apis_unlimited</a></td>
+                    <td><div class="text-sm font-medium">$4,120.00</div></td>
+                    <td class="text-xs text-secondary">2026-02-12</td>
+                    <td class="text-right"><button class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="font-mono text-sm text-secondary">ag_legacy_sync</div>
+                      <div class="text-xs text-muted">Deprecated data pipeline</div>
+                    </td>
+                    <td><div class="badge text-secondary">Disabled</div></td>
+                    <td><span class="text-secondary text-sm">pol_read_only</span></td>
+                    <td><div class="text-sm font-medium text-secondary">$0.00</div></td>
+                    <td class="text-xs text-secondary">2025-11-04</td>
+                    <td class="text-right"><button class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-body text-center text-xs text-secondary">
+              Showing 3 of 24 agents.
+            </div>
+          </div>
+        </div>
+
+        <!-- Policies Page -->
+        <div class="page-content hidden" id="page-policies">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">Policies</h1>
+              <p class="text-secondary text-sm">Rulesets bounding agentic spend limits, allowed merchants, and token expiry.</p>
+            </div>
+            <button class="btn btn-primary text-sm">New Policy</button>
+          </div>
+
+          <div class="grid grid-cols-2 reveal stagger-1 gap-6">
+            <div class="card h-100 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-mono mb-1">pol_aws_restricted</h3>
+                    <p class="text-xs text-secondary">Strict allowance for AWS billing and deployment resources.</p>
+                  </div>
+                  <div class="badge badge-success px-2 py-1">Active</div>
+                </div>
+                <div class="bg-bg border border-border rounded p-3 mb-4">
+                  <div class="flex justify-between items-center text-xs mb-2">
+                    <span class="text-secondary">Monthly Limit</span>
+                    <span class="font-mono">$10,000.00</span>
+                  </div>
+                  <div class="flex justify-between items-center text-xs mb-2">
+                    <span class="text-secondary">Per-Txn Limit</span>
+                    <span class="font-mono">$500.00</span>
+                  </div>
+                  <div class="flex justify-between items-center text-xs">
+                    <span class="text-secondary">Merchant Allowlist</span>
+                    <span class="font-mono text-accent">AWS, VERCEL</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center border-t border-border pt-4 mt-4">
+                <span class="text-xs text-secondary">Linked to 1 array of agents</span>
+                <button class="btn btn-secondary text-xs">Edit Rules</button>
+              </div>
+            </div>
+
+            <div class="card h-100 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-mono mb-1">pol_apis_unlimited</h3>
+                    <p class="text-xs text-secondary">Open authorization for API services (OpenAI, Anthropic, GitHub).</p>
+                  </div>
+                  <div class="badge badge-success px-2 py-1">Active</div>
+                </div>
+                <div class="bg-bg border border-border rounded p-3 mb-4">
+                  <div class="flex justify-between items-center text-xs mb-2">
+                    <span class="text-secondary">Monthly Limit</span>
+                    <span class="font-mono">Uncapped</span>
+                  </div>
+                  <div class="flex justify-between items-center text-xs mb-2">
+                    <span class="text-secondary">Per-Txn Limit</span>
+                    <span class="font-mono">$10.00</span>
+                  </div>
+                  <div class="flex justify-between items-center text-xs">
+                    <span class="text-secondary">Merchant Allowlist</span>
+                    <span class="font-mono text-accent">OPENAI, ANTHROPIC...</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center border-t border-border pt-4 mt-4">
+                <span class="text-xs text-secondary">Linked to 14 agents</span>
+                <button class="btn btn-secondary text-xs">Edit Rules</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spend Tokens -->
+        <div class="page-content hidden" id="page-tokens">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">Spend Tokens</h1>
+              <p class="text-secondary text-sm">Active virtual cards injected into agent context windows.</p>
+            </div>
+          </div>
+
+          <div class="panel reveal stagger-1">
+            <div class="panel-header gap-4">
+              <div class="search-bar" style="width: 100%; max-width: 400px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search tokens by ID or Agent...">
+              </div>
+              <div class="flex gap-2">
+                <select style="width: 140px;">
+                  <option>Status: Live</option>
+                  <option>Status: Expired</option>
+                  <option>Status: Revoked</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Token ID</th>
+                    <th>Linked Agent</th>
+                    <th>Expires</th>
+                    <th>Limit</th>
+                    <th>Spent</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <span class="font-mono text-sm text-primary">tok_8f92j...</span>
+                        <button class="btn-icon" onclick="copyToClipboard('tok_8f92j1kl8cxn', this)" title="Copy Token"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                      </div>
+                    </td>
+                    <td><div class="font-mono text-xs">ag_deployer_prod</div></td>
+                    <td><div class="text-xs font-mono text-warning" style="color:#d29922">In 45m</div></td>
+                    <td>$500.00</td>
+                    <td>$450.00</td>
+                    <td>
+                      <button class="btn btn-secondary text-xs py-1 px-2 border border-border">Revoke</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <span class="font-mono text-sm text-primary">tok_3m1p9...</span>
+                        <button class="btn-icon" onclick="copyToClipboard('tok_3m1p9qx4nba', this)" title="Copy Token"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                      </div>
+                    </td>
+                    <td><div class="font-mono text-xs">ag_gh_bot</div></td>
+                    <td><div class="text-xs font-mono">In 2h</div></td>
+                    <td>$50.00</td>
+                    <td>$12.50</td>
+                    <td>
+                      <button class="btn btn-secondary text-xs py-1 px-2 border border-border">Revoke</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transactions Page -->
+        <div class="page-content hidden" id="page-transactions">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">Transactions</h1>
+              <p class="text-secondary text-sm">Settled and declined ledger across your agent fleet.</p>
+            </div>
+            <button class="btn btn-secondary text-xs">Export CSV</button>
+          </div>
+          
+          <div class="panel reveal stagger-1">
+            <div class="table-container">
+              <table style="font-size: 0.8rem;">
+                <thead class="bg-card">
+                  <tr>
+                    <th>Ledger ID</th>
+                    <th>Date / Time</th>
+                    <th>Agent</th>
+                    <th>Merchant</th>
+                    <th>Status</th>
+                    <th class="text-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-mono text-secondary">txn_89x8cv7a</td>
+                    <td class="font-mono">Mar 24, 14:02:11 UTC</td>
+                    <td class="font-mono text-accent">ag_deployer_prod</td>
+                    <td><div class="font-medium">AWS US-East-1</div><div class="text-[10px] text-secondary">Cloud Infrastructure</div></td>
+                    <td><div class="badge badge-success text-[10px]">Settled</div></td>
+                    <td class="text-right font-medium">$450.00</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-secondary">txn_98c1xz3z</td>
+                    <td class="font-mono">Mar 24, 13:45:00 UTC</td>
+                    <td class="font-mono text-accent">ag_gh_bot</td>
+                    <td><div class="font-medium">GitHub Actions</div><div class="text-[10px] text-secondary">Software</div></td>
+                    <td><div class="badge badge-success text-[10px]">Settled</div></td>
+                    <td class="text-right font-medium">$12.50</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-secondary">txn_12a7bx0t</td>
+                    <td class="font-mono">Mar 24, 12:10:04 UTC</td>
+                    <td class="font-mono text-accent">ag_deployer_prod</td>
+                    <td><div class="font-medium">DIGITALOCEAN</div><div class="text-[10px] text-secondary">Cloud Infrastructure</div></td>
+                    <td><div class="badge border border-border text-[10px]" style="background: rgba(230, 50, 50, 0.1); color: #ff7b72; border-color: rgba(230,50,50,0.3);">Declined: Policy</div></td>
+                    <td class="text-right font-medium text-secondary"><del>$120.00</del></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-secondary">txn_56z9mn1c</td>
+                    <td class="font-mono">Mar 24, 09:33:15 UTC</td>
+                    <td class="font-mono text-accent">ag_research_bot</td>
+                    <td><div class="font-medium">OpenAI API</div><div class="text-[10px] text-secondary">API Services</div></td>
+                    <td><div class="badge badge-success text-[10px]">Settled</div></td>
+                    <td class="text-right font-medium">$0.00 <span class="text-xs text-secondary">(Auth)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-body text-center text-xs text-secondary border-t border-border">
+              End of recent results. Load more.
+            </div>
+          </div>
+        </div>
+
+        <!-- API Keys Page -->
+        <div class="page-content hidden" id="page-apikeys">
+          <div class="page-header reveal">
+            <div>
+              <h1 class="text-2xl font-bold mb-1">API Keys</h1>
+              <p class="text-secondary text-sm">Authentication tokens for our REST API and SDKs.</p>
+            </div>
+            <button class="btn btn-primary text-sm">Roll Secret Key</button>
+          </div>
+          
+          <div class="panel max-w-2xl reveal stagger-1" style="max-width: 800px;">
+            <div class="panel-body flex flex-col gap-6">
+              
+              <div class="bg-bg border border-border rounded p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-medium">Production Secret Key</span>
+                  <div class="badge text-xs">Live Mode</div>
+                </div>
+                <p class="text-xs text-secondary mb-4">Use this key to authenticate requests on your server. Keep it secure and never share it publicly.</p>
+                <div class="flex gap-2">
+                  <input type="password" value="sk_live_************************" readonly class="font-mono text-sm bg-panel" id="prodKey">
+                  <button class="btn btn-secondary" onclick="copyToClipboard(document.getElementById('prodKey').value, this)">Copy</button>
+                </div>
+              </div>
+
+              <div class="bg-bg border border-border rounded p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-medium">Test Secret Key</span>
+                  <div class="badge text-xs border border-warning text-warning" style="background:transparent;">Test Mode</div>
+                </div>
+                <p class="text-xs text-secondary mb-4">Use this key to authenticate mock requests simulating authorization loops.</p>
+                <div class="flex gap-2">
+                  <input type="text" value="sk_test_************************" readonly class="font-mono text-sm bg-panel text-secondary" id="testKey">
+                  <button class="btn btn-secondary" onclick="copyToClipboard(document.getElementById('testKey').value, this)">Copy</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Global Modal UI -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="panel-header border-b border-border">
+        <h3 class="text-lg font-medium">Create Resource</h3>
+        <button class="btn-icon" id="closeModal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="panel-body flex flex-col gap-4">
+        <div>
+          <label class="text-xs text-secondary uppercase font-semibold mb-2 block">Resource Type</label>
+          <select class="bg-bg">
+            <option>Agent Profile</option>
+            <option>Spend Policy</option>
+            <option>Manual Spend Token</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-secondary uppercase font-semibold mb-2 block">ID Reference (Optional)</label>
+          <input type="text" placeholder="ag_custom_name" class="font-mono">
+        </div>
+        <div class="border-t border-border pt-4 mt-4 flex justify-end gap-2">
+          <button class="btn btn-secondary" onclick="document.getElementById('modalBackdrop').classList.remove('active')">Cancel</button>
+          <button class="btn btn-primary">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    // Local script to handle breadcrumb update based on click
+    document.addEventListener('DOMContentLoaded', () => {
+      const navItems = document.querySelectorAll('.nav-item[data-target]');
+      const breadcrumb = document.getElementById('breadcrumb-current');
+
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          breadcrumb.textContent = item.textContent.trim();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
