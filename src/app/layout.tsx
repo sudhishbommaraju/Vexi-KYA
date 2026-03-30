@@ -31,9 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
-      <body className="antialiased font-inter bg-background text-primary">
+      <body className="antialiased font-inter bg-background text-textPrimary selection:bg-accent/30 min-h-screen">
         <SessionProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
             {children}
           </ThemeProvider>
         </SessionProvider>
